@@ -1,0 +1,15 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "Write probes for new criteria",
+      "trigger": "PostFileSave",
+      "description": "When a requirements doc is saved, asks Kiro to add a Specter probe or monitor line to every acceptance criterion that doesn't have one.",
+      "matcher": "(requirements\\.md|defaultSpec\\.ts)$",
+      "action": {
+        "type": "agent",
+        "prompt": "A requirements document was just saved. For every acceptance criterion that has no indented `probe:` or `monitor:` line, propose one in the Specter language defined at the top of src/spec.ts (steps: visit, click, type, remember number, expect number, expect text, expect visible, expect hidden, wait; monitors: `number X == sum Y`, `no errors in Ns`). Use selectors that exist in the app under test. Choose a probe for WHEN/THEN behavior and a monitor for \"always\" or \"never\" rules. If a criterion can't be checked from the page, say so instead of inventing a check. Run npm test afterwards; the default spec must still parse with one check per criterion."
+      }
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "Typecheck when agent finishes",
+      "trigger": "Stop",
+      "description": "Runs tsc --noEmit at the end of every agent turn.",
+      "action": {
+        "type": "command",
+        "command": "npm run typecheck --silent",
+        "timeout": 120
+      }
+    }
+  ]
+}

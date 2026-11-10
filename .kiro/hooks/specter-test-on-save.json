@@ -1,0 +1,16 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "Run spec-language tests on save",
+      "trigger": "PostFileSave",
+      "description": "Runs the Specter property-based tests once whenever a TypeScript file under src/ is saved.",
+      "matcher": "src/.*\\.(ts|tsx)$",
+      "action": {
+        "type": "command",
+        "command": "npx vitest run --reporter=dot",
+        "timeout": 120
+      }
+    }
+  ]
+}
